@@ -10,6 +10,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.TextField(_("first name"), default=None)
     last_name = models.TextField(_("last name"), default=None)
+    username = models.TextField(_("username"), default=None)
     is_staff = models.BooleanField(_("admin"), default=False)
     is_active = models.BooleanField(_("active"), default=False)
     create_at = models.DateField(_("created at"), auto_now=True)
