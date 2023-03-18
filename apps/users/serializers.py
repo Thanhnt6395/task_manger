@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from django.contrib.auth import get_user_model
+from rest_framework.authtoken.models import Token
 
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
 
 
@@ -35,4 +36,7 @@ class RegisterSerializers(serializers.ModelSerializer):
         
         user.set_password(validated_data.get('password1'))
         user.save()
+        #TODO: send mail active
+        token = Token.objects.create(user=user)
+        token.save()
         return user
